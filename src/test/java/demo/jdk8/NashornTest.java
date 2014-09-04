@@ -1,4 +1,4 @@
-package org.gradle;
+package demo.jdk8;
 
 import static org.fest.assertions.api.Assertions.*;
 
@@ -9,6 +9,8 @@ import javax.script.ScriptException;
 
 import org.fest.util.Strings;
 import org.junit.Test;
+
+import demo.jdk8.Nashorn;
 
 public class NashornTest {
 	@Test

@@ -1,4 +1,4 @@
-package org.gradle;
+package demo.jdk8;
 
 import java.io.Reader;
 
