@@ -9,4 +9,9 @@ public class BaseLambdas {
 		};
 		oldRunner.run();
 	}
+	
+	public static void mainJava8(String[] args) {
+		Runnable oldRunner = () -> System.out.println("Hello there !");
+		oldRunner.run();
+	}
 }

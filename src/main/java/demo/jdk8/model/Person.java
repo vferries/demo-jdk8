@@ -1,9 +1,10 @@
-package demo.jdk8;
+package demo.jdk8.model;
 
 public class Person {
 	private String firstName;
 	private String lastName;
 	private int age;
+	private Address address;
 
 	public Person(String firstName, String lastName, int age) {
 		this.firstName = firstName;
@@ -33,5 +34,13 @@ public class Person {
 
 	public void setAge(int age) {
 		this.age = age;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 }
