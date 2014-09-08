@@ -1,4 +1,4 @@
-package demo.jdk8;
+package demo.solution;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,47 +32,45 @@ public class PersonService {
 		persons.add(new Person("Viviane", "Laurent", 54));
 	}
 
-	public Map<Integer, List<Person>> getPersonsByAge() {
+	public Map<Integer, List<Person>> getPersonsByAge2() {
 		Map<Integer, List<Person>> mapByAge = new HashMap<>();
-		for (Person p : persons) {
-			if (!mapByAge.containsKey(p.getAge())) {
-				mapByAge.put(p.getAge(), new ArrayList<>());
-			}
-			mapByAge.get(p.getAge()).add(p);
-		}
+		persons.forEach(p -> mapByAge.computeIfAbsent(p.getAge(),
+				ArrayList::new).add(p));
 		return mapByAge;
 	}
 
-	public String listFirstNamesFromFamily(String family) {
-		List<String> matchingFirstNames = new ArrayList<String>();
+	public Map<Integer, List<Person>> getPersonsByAge() {
+		return persons.stream().collect(Collectors.groupingBy(Person::getAge));
+	}
+
+	public String listFirstNamesFromFamilyJava7(String family) {
+		List<String> matchingFirstNames = new ArrayList<>();
 		for (Person p : persons) {
 			if (family.equals(p.getLastName())) {
 				matchingFirstNames.add(p.getFirstName());
 			}
 		}
-		StringBuilder firstNames = new StringBuilder();
+		String firstNames = "";
 		for (String firstName : matchingFirstNames) {
-			if (firstNames.length() > 0) {
-				firstNames.append(", ");
+			if (!"".equals(firstNames)) {
+				firstNames += ", ";
 			}
-			firstNames.append(firstName);
+			firstNames += firstName;
 		}
-		return firstNames.toString();
+		return firstNames;
 	}
 
-	public List<Person> personsSortedByFirstNameAndLastName() {
-		List<Person> result = new ArrayList<>(persons);
-		result.sort(new Comparator<Person>() {
-			@Override
-			public int compare(Person o1, Person o2) {
-				int firstNameComparison = o1.getFirstName().compareTo(o2.getFirstName());
-				if (firstNameComparison != 0) {
-					return firstNameComparison;
-				} else {
-					return o1.getLastName().compareTo(o2.getLastName());
-				}
-			}
-		});
-		return result;
+	public String listFirstNamesFromFamilyJava8(String family) {
+		return persons.stream().filter(p -> family.equals(p.getLastName()))
+				.map(Person::getFirstName).collect(Collectors.joining(", "));
 	}
+
+	public List<Person> personsSortedByFirstNameAndLastNameJava8() {
+		return persons
+				.stream()
+				.sorted(Comparator.comparing(Person::getFirstName)
+						.thenComparing(Person::getLastName))
+				.collect(Collectors.toList());
+	}
+
 }

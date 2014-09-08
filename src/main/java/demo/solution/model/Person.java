@@ -1,14 +1,14 @@
-package demo.jdk8.model;
+package demo.solution.model;
 
 import java.util.Optional;
 
-public class PersonJava8 {
+public class Person {
 	private String firstName;
 	private String lastName;
 	private int age;
-	private AddressJava8 address;
+	private Address address;
 
-	public PersonJava8(String firstName, String lastName, int age) {
+	public Person(String firstName, String lastName, int age) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -38,11 +38,11 @@ public class PersonJava8 {
 		this.age = age;
 	}
 
-	public Optional<AddressJava8> getAddress() {
+	public Optional<Address> getAddress() {
 		return address == null ? Optional.empty() : Optional.of(address);
 	}
 
-	public void setAddress(AddressJava8 address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 }

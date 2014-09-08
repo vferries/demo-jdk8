@@ -1,12 +1,12 @@
-package demo.jdk8.model;
+package demo.solution.model;
 
 import java.util.Optional;
 
-public class AddressJava8 {
+public class Address {
 	private String city;
 	private String street;
 
-	public AddressJava8(String city, String street) {
+	public Address(String city, String street) {
 		this.city = city;
 		this.street = street;
 	}
