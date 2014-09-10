@@ -1,8 +1,11 @@
 package demo.jdk8;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import demo.jdk8.model.Person;
 import static org.fest.assertions.api.Assertions.*;
 
 public class PersonServiceTest {
@@ -24,10 +27,20 @@ public class PersonServiceTest {
 	}
 
 	@Test
-	public void should() {
+	public void shouldListFerriesFamily() {
 		assertThat(service.listFirstNamesFromFamily("Ferries")).hasSize(37)
 				.contains("Vincent").contains("Alexis").contains("Célia")
 				.contains("Antony");
 	}
 
+	@Test
+	public void shouldBeSortedByFirstAndLastName() throws Exception {
+		Person alexis = new Person("Alexis", "Ferries", 11);
+		Person antony = new Person("Antony", "Ferries", 14);
+		Person chloé = new Person("Chloé", "Vermuso", 22);
+		List<Person> actual = service.personsSortedByFirstNameAndLastName();
+		assertThat(actual.get(0)).isEqualsToByComparingFields(alexis);
+		assertThat(actual.get(1)).isEqualsToByComparingFields(antony);
+		assertThat(actual.get(2)).isEqualsToByComparingFields(chloé);
+	}
 }
