@@ -1,6 +1,7 @@
 package demo.jdk8;
 
 import static org.fest.assertions.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -24,7 +25,7 @@ public class NashornTest {
 		String script = Strings.join(
 				"var fact = function(n) {",
 				"	return n == 1 ? 1 : n * fact(n-1);",
-				"}",
+				"};",
 				"fact(5)"
 				).with("\n");
 		Object actual = Nashorn.INSTANCE.executeJavaScript(script);
@@ -35,5 +36,21 @@ public class NashornTest {
 	public void testExecuteFile() throws ScriptException, FileNotFoundException {
 		Object actual = Nashorn.INSTANCE.executeJavaScript(new FileReader("src/test/resources/testScript.js"));
 		assertThat(actual).isEqualTo(6.);
+	}
+	
+	@Test
+	public void testJSMethodCall() throws Exception {
+		String script = Strings.join(
+				"var fact = function(n) {",
+				"	return n == 1 ? 1 : n * fact(n-1);",
+				"};"
+				).with("\n");
+		Nashorn.INSTANCE.executeJavaScript(script);
+		Object actual = Nashorn.INSTANCE.invokeFunction("fact", 7);
+		assertThat(actual).isEqualTo(5040.);
+	}
+	
+	@Test
+	public void testJavaCallFromJS() {
 	}
 }
