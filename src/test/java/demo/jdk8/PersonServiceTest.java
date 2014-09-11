@@ -29,7 +29,7 @@ public class PersonServiceTest {
 	@Test
 	public void shouldListFerriesFamily() {
 		assertThat(service.listFirstNamesFromFamily("Ferries")).hasSize(37)
-				.contains("Vincent").contains("Alexis").contains("C�lia")
+				.contains("Vincent").contains("Alexis").contains("Célia")
 				.contains("Antony");
 	}
 
@@ -37,7 +37,7 @@ public class PersonServiceTest {
 	public void shouldBeSortedByFirstAndLastName() throws Exception {
 		Person alexis = new Person("Alexis", "Ferries", 11);
 		Person antony = new Person("Antony", "Ferries", 14);
-		Person chloé = new Person("Chlo�", "Vermuso", 22);
+		Person chloé = new Person("Chloé", "Vermuso", 22);
 		List<Person> actual = service.personsSortedByFirstNameAndLastName();
 		assertThat(actual.get(0)).isEqualsToByComparingFields(alexis);
 		assertThat(actual.get(1)).isEqualsToByComparingFields(antony);

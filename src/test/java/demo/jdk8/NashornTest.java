@@ -1,7 +1,6 @@
 package demo.jdk8;
 
-import static org.fest.assertions.api.Assertions.*;
-import static org.junit.Assert.*;
+import static org.fest.assertions.api.Assertions.assertThat;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,8 +9,6 @@ import javax.script.ScriptException;
 
 import org.fest.util.Strings;
 import org.junit.Test;
-
-import demo.jdk8.Nashorn;
 
 public class NashornTest {
 	@Test
@@ -51,6 +48,13 @@ public class NashornTest {
 	}
 	
 	@Test
-	public void testJavaCallFromJS() {
+	public void testJavaCallFromJS() throws ScriptException {
+		String script = Strings.join(
+				"var PersonJavaClass = Java.type('demo.jdk8.model.Person');",
+				"var p = new PersonJavaClass('Jean', 'Claude', 22);",
+				"p.getFirstName();"
+				).with("\n");
+		Object actual = Nashorn.INSTANCE.executeJavaScript(script);
+		assertThat(actual).isEqualTo("Jean");
 	}
 }

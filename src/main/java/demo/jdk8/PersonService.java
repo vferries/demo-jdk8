@@ -22,12 +22,12 @@ public class PersonService {
 		persons.add(new Person("Virginie", "Zubrowska", 30));
 		persons.add(new Person("Juliette", "Binocle", 30));
 		persons.add(new Person("Colin", "Ferries", 30));
-		persons.add(new Person("Célia", "Ferries", 12));
+		persons.add(new Person("CÃ©lia", "Ferries", 12));
 		persons.add(new Person("Antony", "Ferries", 14));
 		persons.add(new Person("Alexis", "Ferries", 11));
-		persons.add(new Person("Hervé", "Dupré", 43));
-		persons.add(new Person("Chloé", "Vermuso", 22));
-		persons.add(new Person("Grégory", "Dupin", 35));
+		persons.add(new Person("HervÃ©", "DuprÃ©", 43));
+		persons.add(new Person("ChloÃ©", "Vermuso", 22));
+		persons.add(new Person("GrÃ©gory", "Dupin", 35));
 		persons.add(new Person("Viviane", "Laurent", 54));
 	}
 
