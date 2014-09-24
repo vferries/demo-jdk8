@@ -23,7 +23,7 @@ public class Optionals {
 	public String getStreetIfInCity2(Optional<Person> person,
 			String city) {
 		return person.flatMap(Person::getAddress)
-				.filter(a -> city.equals(a.getCity()))
+				.filter(a -> city.equals(city))
 				.flatMap(Address::getStreet).orElse("UNKNOWN");
 	}
 }
