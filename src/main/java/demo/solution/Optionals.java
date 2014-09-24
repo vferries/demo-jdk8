@@ -12,7 +12,7 @@ public class Optionals {
 		if (person.isPresent()) {
 			Optional<Address> address = person.get().getAddress();
 			if (address.isPresent()) {
-				if (city.equals(address.get().getCity())) {
+				if (city.equals(address.get().getCity().get())) {
 					street = address.get().getStreet().get();
 				}
 			}

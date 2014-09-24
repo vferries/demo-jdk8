@@ -39,7 +39,7 @@ public class Person {
 	}
 
 	public Optional<Address> getAddress() {
-		return address == null ? Optional.empty() : Optional.of(address);
+		return Optional.ofNullable(address);
 	}
 
 	public void setAddress(Address address) {

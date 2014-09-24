@@ -12,7 +12,7 @@ public class Address {
 	}
 
 	public Optional<String> getCity() {
-		return city == null ? Optional.of(city) : Optional.empty();
+		return city != null ? Optional.of(city) : Optional.empty();
 	}
 
 	public void setCity(String city) {
@@ -20,7 +20,7 @@ public class Address {
 	}
 
 	public Optional<String> getStreet() {
-		return street == null ? Optional.of(street) : Optional.empty();
+		return street != null ? Optional.of(street) : Optional.empty();
 	}
 
 	public void setStreet(String street) {
